@@ -1,0 +1,11 @@
+<h2>From Le View</h2>
+
+@*
+  Razor View Engine: helps mix C# & html -> html as below
+*@
+<ul>
+  @foreach (var item in ViewBag.Order.Crusts)
+  {
+    <li>@item</li>
+  }
+</ul>
