@@ -1,12 +1,14 @@
+using System.Collections.Generic;
 using PizzaBox.Domain.Interfaces;
+using PizzaBox.Domain.Models;
 
 namespace PizzaBox.Storage.Repos
 {
-    public class OrderRepo<T> : IRepo<T> where T : Order
+    public class OrderRepo : IRepo<Order>
     {
       public IEnumerable<Order> Select()
       {
-        throw new System.NotImplementedException();
+        return new List<Order> {new Order(), new Order()};
       }
 
       public bool Insert()

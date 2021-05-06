@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using PizzaBox.Domain.Interfaces;
+using PizzaBox.Domain.Models;
 
 namespace PizzaBox.Storage.Repos
 {
-    public class CrustRepo<T> : IRepo<T> where T : Crust
+    public class CrustRepo : IRepo<Crust> 
     {
       public IEnumerable<Crust> Select()
       {

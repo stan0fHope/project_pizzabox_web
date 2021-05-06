@@ -1,12 +1,14 @@
+using System.Collections.Generic;
 using PizzaBox.Domain.Interfaces;
+using PizzaBox.Domain.Models;
 
 namespace PizzaBox.Storage.Repos
 {
-    public class SizeRepo<T> : IRepo<Size>
+    public class SizeRepo : IRepo<Size>
     {
       public IEnumerable<Size> Select()
       {
-        throw new System.NotImplementedException();
+        return new List<Size> {new Size(), new Size()};
       }
 
       public bool Insert()

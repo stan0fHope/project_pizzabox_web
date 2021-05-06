@@ -1,15 +1,15 @@
-using System.collections.Generic;
+using System.Collections.Generic;
 
 namespace PizzaBox.Domain.Interfaces
 {
   public interface IRepo <T> where T : class      
   { 
-    public T Select(); 
+    IEnumerable<T> Select();
 
-    public T Update();
+    bool Insert();
 
-    public T Insert(); 
-
-    public T Delete();       
+    T Update();
+    
+    bool Delete(); 
   }
 }
