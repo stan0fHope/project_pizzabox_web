@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using PizzaBox.Client.Models;
+using PizzaBox.Storage;
 using PizzaBox.Storage.Repos;
 
 namespace PizzaBox.Client.Controllers
 {
-  [Route('[controllers]/[action]')]
+  [Route("[controller]")]
   // [Route('[controllers]')] 
 
-  public class HomeController : Controllers
+  public class HomeController : Controller
   {
     private readonly UnitOfWork _unitOfWork = new UnitOfWork();
     public HomeController(UnitOfWork unitOfWork)

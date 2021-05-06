@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
-using PizzaBox.Client.Models.\;
+using PizzaBox.Client.Models;
+using PizzaBox.Storage;
 
 
 namespace PizzaBox.Client.Controllers
 {
   [Route("[controller")]
-  public class OrderController : Controllers
+  public class OrderController : Controller
   {
     [HttpGet]
     [HttpPost]
@@ -18,18 +19,18 @@ namespace PizzaBox.Client.Controllers
         return order.SelectedCrust;
         return View("checkout"); //if valid, go to this page
       }
-      return View("index", order)
-    }      
-
-    public IActionResult Create(OrderViewModel order)
-    {
-      if (ModelState.IsValid)
-      {
-        return order.SelectedCrust;
-        return View("checkout"); //if valid, go to this page
-      }
-      return View("index", order)
+      return View("index", order);
     }
-    
+
+    // public IActionResult Create(OrderViewModel order)
+    // {
+    //   if (ModelState.IsValid)
+    //   {
+    //     return order.SelectedCrust;
+    //     return View("checkout"); //if valid, go to this page
+    //   }
+    //   return View("index", order);
+    // }
+
   }
 }
