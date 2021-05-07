@@ -7,6 +7,11 @@ namespace PizzaBox.Storage.Repos
 {
   public class StoreRepo : IRepo<AStore>
   {
+    private readonly PizzaBoxContext _context;
+    public StoreRepo(PizzaBoxContext context)
+    {
+      _context = context;
+    }
     public IEnumerable<AStore> Select(Func<AStore, bool> filter)
     {
       return _context.Stores.Where(filter);

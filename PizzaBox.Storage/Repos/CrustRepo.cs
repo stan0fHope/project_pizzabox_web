@@ -8,6 +8,11 @@ namespace PizzaBox.Storage.Repos
   public class CrustRepo : IRepo<Crust>
   {
     private readonly PizzaBoxContext _context;
+    public CrustRepo(PizzaBoxContext context)
+    {
+      _context = context;
+    }
+
     public IEnumerable<Crust> Select(Func<Crust, bool> filter)
     {
       // get ball rolling

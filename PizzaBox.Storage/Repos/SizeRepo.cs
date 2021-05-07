@@ -6,6 +6,11 @@ namespace PizzaBox.Storage.Repos
 {
   public class SizeRepo : IRepo<Size>
   {
+    private readonly PizzaBoxContext _context;
+    public SizeRepo(PizzaBoxContext context)
+    {
+      _context = context;
+    }
     public IEnumerable<Size> Select(Func<Size, bool> filter)
     {
       return _context.Sizes.Where(filter);
