@@ -5,7 +5,7 @@ jobs:
     # which machine/environ like Ubuntu or so
     steps:
       # first pull in code to start
-      - uses: actions/checkout@latest
+      - uses: actions/checkout@v2
       # now with the code, we can build
       - run: dotnet build
 
