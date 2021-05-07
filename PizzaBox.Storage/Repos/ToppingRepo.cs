@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using PizzaBox.Domain.Interfaces;
 using PizzaBox.Domain.Models;
@@ -6,13 +7,11 @@ namespace PizzaBox.Storage.Repos
 {
   public class ToppingRepo : IRepo<Topping>
   {
-    public IEnumerable<Topping> Select()
+    public IEnumerable<Topping> Select(Func<Topping, bool> filter)
     {
-      // get ball rolling
-      return new List<Topping> { new Topping(), new Topping() };
+      return _context.Toppings.Where(filter);
     }
-
-    public bool Insert()
+    public bool Insert(Topping entry)
     {
       throw new System.NotImplementedException();
     }

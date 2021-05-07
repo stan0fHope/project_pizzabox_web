@@ -1,22 +1,22 @@
+using System;
 using System.Collections.Generic;
 using PizzaBox.Domain.Interfaces;
 using PizzaBox.Domain.Models;
 
 namespace PizzaBox.Storage.Repos
 {
-  public class SizeRepo : IRepo<Size>
+  public class StoreRepo : IRepo<AStore>
   {
-    public IEnumerable<Size> Select(Func<Size, bool> filter)
+    public IEnumerable<AStore> Select(Func<AStore, bool> filter)
     {
-      return _context.Sizes.Where(filter);
+      return _context.Stores.Where(filter);
     }
-
-    public bool Insert(Size entry)
+    public bool Insert(AStore entry)
     {
       throw new System.NotImplementedException();
     }
 
-    public Size Update()
+    public AStore Update()
     {
       throw new System.NotImplementedException();
     }
@@ -24,7 +24,6 @@ namespace PizzaBox.Storage.Repos
     public bool Delete()
     {
       throw new System.NotImplementedException();
-
     }
 
   }

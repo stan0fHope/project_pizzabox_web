@@ -6,14 +6,21 @@ namespace PizzaBox.Storage.Repos
 {
   public class OrderRepo : IRepo<Order>
   {
-    public IEnumerable<Order> Select()
+    private readonly PizzaBoxContext _context;
+    public OrderRepository(PizzaBoxContext context)
     {
-      return new List<Order> { new Order(), new Order() };
+      _context = context;
+    }
+    public IEnumerable<Order> Select(Func<Order, bool> filter)
+    {
+      // get ball rolling
+      throw new System.NotImplementedException();
     }
 
-    public bool Insert()
+    public bool Insert(OrderRepo entry)
     {
-      throw new System.NotImplementedException();
+      _context.Orders.Add(entry);
+      return true;
     }
 
     public Order Update()
