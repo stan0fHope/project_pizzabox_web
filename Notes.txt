@@ -1,0 +1,78 @@
+Index.cshtml
+@* Strong Type View *@
+
+@model PizzaBox.Client.Models.OrderViewModel
+
+<h2>From Le View</h2>
+
+@*
+  Razor View Engine: helps mix C# & html -> html as below
+  @ = C#, <> = html (works on ASP.NET)
+*@
+
+@* Weak Type view (var x = 10;) *@
+<ul>
+  @foreach (var item in ViewBag.Order.Crusts)
+  {
+    <li>@item</li>
+  }
+</ul>
+@* Strong View: couple model & view (int x = 10) *@
+
+@* HTML Way *@
+<form action="/order">
+  @Html.AntiForgeryToken()
+  <fieldset>
+    <legend>Crusts</legend>
+
+    @Html.ValidationMessageFor(m => m.SelectedCrust)
+    @foreach (var item in Models.Crusts)
+    {
+      <div class="form-check">
+        <label class="form-check-label" for="@item">@item></label>
+        <input class="form-check-input" type="radio" id="@item" name="selectedcrust" value="@item"
+        asp-for="SelectedCrust">
+
+        @Html.ValidationMessageFor(m => m.SelectedCrust)
+      </div>
+
+    }
+  </fieldset>
+
+  <fieldset>
+    <legend>Sizes </legend>
+
+    @Html.ValidationMessageFor(m => m.SelectedSize)
+    @foreach (var item in Models.Sizes)
+    {
+      <label for="@item">@item></label>
+      <input type="radio" id="@item" name="selectedsize" value="@item" asp-for="SelectedSize">
+    }
+  </fieldset>
+
+  <field>
+    <legend>Toppings</legend>
+    @Html.ValidationMessageFor(m => m.SelectedToppings)
+    @foreach (var item in Models.Toppings)
+    {
+      <label for="@item">@item></label>
+      <input type="checkbox" id="@item" name="selectedtoppings" value="@item">
+    }
+  </field>
+
+
+  <button type="submit" action="">Make Pizza</button>
+</form>
+
+@* Tag Helper Way *@
+@* <form asp-controller="order" method="post">
+  @foreach (var item in Model.Sizes)
+  {
+  <label asp-for="@item">@item</label>
+  <input>
+  }
+
+  </form> *@
+@* public class *@
+
+

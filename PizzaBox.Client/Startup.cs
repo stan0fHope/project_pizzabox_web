@@ -20,6 +20,15 @@ namespace PizzaBox.Client
     {
       services.AddControllersWithViews();
       services.AddScoped<UnitOfWork>();
+      // Add_ (instance per lifetime)
+      // scoped(instance per session), each get so wait on yourselves. same instance for your visit
+      // singleton(instance per application) best on readonly, else cause traffic
+      // transient(instance per request), Overkill esp if 100 ppl w/ 10 request each
+      services.AddDbContext<PizzaBoxContext>(ParallelOptions =>
+      {
+        options.UseNpgsql(_configuration["pgsql"]);
+        options.UseNpgsql(Configuration.GetConnectionString(""));
+      });
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -3,9 +3,6 @@ using System.ComponentModel.DataAnnotations;
 using PizzaBox.Domain.Models;
 using PizzaBox.Storage;
 using PizzaBox.Storage.Repos;
-
-
-
 // input-output model
 
 namespace PizzaBox.Client.Models
@@ -18,13 +15,12 @@ namespace PizzaBox.Client.Models
     public List<Size> Sizes { get; set; }
     public List<Topping> Toppings { get; set; }
 
-
-
     public OrderViewModel(UnitOfWork unitOfWork)
     {
       // Crusts = crustRepo.Select(); doesnt work. Select is IEnum<Crust>
       Crusts = unitOfWork.Crusts.Select().ToList(); // make into List(LINQ), from IEnum<Class> to List<Cr
-                                                    // follow on the rest
+      Sizes = unitOfWork.Sizes.Select().ToList();
+      Toppings = unitOfWork.Toppings.Select().ToList();
     }
 
     // Selected option

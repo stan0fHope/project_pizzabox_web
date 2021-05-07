@@ -12,7 +12,7 @@ namespace PizzaBox.Domain.Abstracts
   [XmlInclude(typeof(Size))]
   [XmlInclude(typeof(Topping))]
 
-  public class AComponent : AModel
+  public class AComponent : Entity
   {
     public string Name { get; set; }
     public decimal Price { get; set; }
@@ -23,7 +23,7 @@ namespace PizzaBox.Domain.Abstracts
     /// <returns></returns>
     public override string ToString()
     {
-      return Name;
+      return $"{Name}";
     }
   }
 }
