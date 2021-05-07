@@ -1,0 +1,13 @@
+# on:
+jobs:
+  build: 
+    runs-on: ubuntu-20.04 
+    # which machine/environ like Ubuntu or so
+    steps:
+      # first pull in code to start
+      - uses: actions/checkout@latest
+      # now with the code, we can build
+      - run: dotnet build
+
+name: ci-pipeline
+trigger: push

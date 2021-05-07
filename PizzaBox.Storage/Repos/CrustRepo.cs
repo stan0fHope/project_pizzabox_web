@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using PizzaBox.Domain.Interfaces;
 using PizzaBox.Domain.Models;
@@ -19,7 +20,7 @@ namespace PizzaBox.Storage.Repos
       return _context.Crusts.Where(filter);
     }
 
-    public bool Insert()
+    public bool Insert(Crust entry)
     {
       throw new System.NotImplementedException();
     }

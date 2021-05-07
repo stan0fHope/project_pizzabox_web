@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Collections.Generic;
 using PizzaBox.Domain.Interfaces;
 using PizzaBox.Domain.Models;
@@ -7,7 +9,7 @@ namespace PizzaBox.Storage.Repos
   public class OrderRepo : IRepo<Order>
   {
     private readonly PizzaBoxContext _context;
-    public OrderRepository(PizzaBoxContext context)
+    public OrderRepo(PizzaBoxContext context)
     {
       _context = context;
     }
@@ -17,7 +19,7 @@ namespace PizzaBox.Storage.Repos
       throw new System.NotImplementedException();
     }
 
-    public bool Insert(OrderRepo entry)
+    public bool Insert(Order entry)
     {
       _context.Orders.Add(entry);
       return true;

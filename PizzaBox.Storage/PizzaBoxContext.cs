@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using PizzaBox.Domain.Abstracts;
@@ -7,7 +8,6 @@ namespace PizzaBox.Storage
 {
   public class PizzaBoxContext : DbContext
   {
-    // Cover by the Injection, same as project0
     public DbSet<Crust> Crusts { get; set; }
     public DbSet<Size> Sizes { get; set; }
     public DbSet<Topping> Toppings { get; set; }
@@ -19,7 +19,7 @@ namespace PizzaBox.Storage
 
     public PizzaBoxContext(DbContextOptions options) : base(options) { }
     // ^ configs can be injected in
-    protected override void OnModelCreating(ModelBuilder builders)
+    protected override void OnModelCreating(ModelBuilder builder)
     {
       builder.Entity<Crust>().HasKey(e => e.EntityId);
       builder.Entity<Order>().HasKey(e => e.EntityId);
@@ -33,25 +33,25 @@ namespace PizzaBox.Storage
     {
       builder.Entity<Crust>().HasData(new[]
       {
-        new Crust() { EntityId = 1, Name = "original" },
-        new Crust() { EntityId = 2, Name = "stuffed" },
-        new Crust() { EntityId = 3, Name = "flatbread" },
+        new Crust() { EntityId = 1, Name = "original", Price = 5.00M },
+        new Crust() { EntityId = 2, Name = "stuffed", Price = 7.00M },
+        new Crust() { EntityId = 3, Name = "flatbread", Price = 6.50M}
       });
 
       builder.Entity<Size>().HasData(new[]
       {
-        new Size() { EntityId = 1, Name = "small" },
-        new Size() { EntityId = 2, Name = "medium" },
-        new Size() { EntityId = 3, Name = "large"}
+        new Size() { EntityId = 1, Name = "small", Price = 7.00M },
+        new Size() { EntityId = 2, Name = "medium", Price = 10.00M},
+        new Size() { EntityId = 3, Name = "large", Price = 14.00M}
       });
 
       builder.Entity<Topping>().HasData(new[]
       {
-        new Topping() { EntityId = 1, Name = "pepperoni" },
-        new Topping() { EntityId = 2, Name = "pineapple" },
-        new Topping() { EntityId = 3, Name = "ham" },
-        new Topping() { EntityId = 4, Name = "green peppers" },
-        new Topping() { EntityId = 5, Name = "black olives" }
+        new Topping() { EntityId = 1, Name = "pepperoni", Price = 1.50M},
+        new Topping() { EntityId = 2, Name = "pineapple", Price = 2.50M},
+        new Topping() { EntityId = 3, Name = "ham", Price = 1.50M },
+        new Topping() { EntityId = 4, Name = "green peppers", Price = 1.25M},
+        new Topping() { EntityId = 5, Name = "black olives", Price = 1.75M}
       });
     }
   }

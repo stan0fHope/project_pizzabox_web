@@ -27,4 +27,3 @@ namespace PizzaBox.Domain.Abstracts
     }
   }
 }
-
