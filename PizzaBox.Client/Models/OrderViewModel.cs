@@ -15,12 +15,11 @@ namespace PizzaBox.Client.Models
     public List<Size> Sizes { get; set; }
     public List<Topping> Toppings { get; set; }
 
-    public OrderViewModel(UnitOfWork unitOfWork)
+    public void Load(UnitOfWork unitOfWork)
     {
-      // Crusts = crustRepo.Select(); doesnt work. Select is IEnum<Crust>
-      Crusts = unitOfWork.Crusts.Select().ToList(); // make into List(LINQ), from IEnum<Class> to List<Cr
-      Sizes = unitOfWork.Sizes.Select().ToList();
-      Toppings = unitOfWork.Toppings.Select().ToList();
+      Crusts = unitOfWork.Crusts.Select(c => !string.IsNullOrWhiteSpace(c.Name)).ToList();
+      Sizes = unitOfWork.Sizes.Select(s => !string.IsNullOrWhiteSpace(s.Name)).ToList();
+      Toppings = unitOfWork.Toppings.Select(t => !string.IsNullOrWhiteSpace(t.Name)).ToList();
     }
 
     // Selected option
@@ -39,10 +38,6 @@ namespace PizzaBox.Client.Models
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
       var validResults = new List<ValidationResult>();
-      // actually valid errors
-      // buy car, waiting for use
-
-      // var ctx = validationContext.Items.
       if (SelectedCrust == SelectedSize)
       {
         validResults.Add(new ValidationResult("IS you crasy!", new string[] { "SelectedCrust", "SelectedSize" }));
@@ -56,16 +51,11 @@ namespace PizzaBox.Client.Models
 
       if (SelectedToppings.Count < 2 || SelectedToppings.Count > 5)
       {
-        validResults.Add(new ValidationResult("IS you crasy!", new string[] { "SelectedToppings" }));
+        yield return new ValidationResult("IS you crasy!", new[] { "SelectedToppings" });
       }
-
-
-      // if (SelectedCrust.Contains("Org"))
 
       return validResults;
     }
-
-
 
   }
 }
