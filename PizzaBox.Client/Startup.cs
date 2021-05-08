@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,8 +33,8 @@ namespace PizzaBox.Client
       // transient(instance per request), Overkill esp if 100 ppl w/ 10 request each
       services.AddDbContext<PizzaBoxContext>(ParallelOptions =>
       {
-        options.UseNpgsql(_configuration["pgsql"]);
-        options.UseNpgsql(Configuration.GetConnectionString(""));
+        // options.UseNpgsql(_configuration[""]);
+        options.UseNpgsql(Configuration.GetConnectionString("pgsql"));
       });
     }
 

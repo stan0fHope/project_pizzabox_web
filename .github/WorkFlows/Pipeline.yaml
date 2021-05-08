@@ -9,5 +9,8 @@ jobs:
       # now with the code, we can build
       - run: dotnet build
 
+      # test: xunit + coverlet
+      # analyze: sonarcloud (static code anaylsis)
+
 name: ci-pipeline
 trigger: push

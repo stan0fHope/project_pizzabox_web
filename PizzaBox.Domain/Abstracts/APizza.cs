@@ -4,18 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 using PizzaBox.Domain.Models;
-using PizzaBox.Domain.Models.Pizzas;
 
 namespace PizzaBox.Domain.Abstracts
 {
   /// <summary>
   /// 
   /// </summary>
-  [XmlInclude(typeof(CustomPizza))]
-  [XmlInclude(typeof(MeatPizza))]
-  [XmlInclude(typeof(VeggiePizza))]
-
-  public abstract class APizza : AModel
+  public abstract class APizza : Entity
   {
     public Crust Crust { get; set; }
     // public CrustEnum CrustEnum; if using enum, gotta recompile for chngs

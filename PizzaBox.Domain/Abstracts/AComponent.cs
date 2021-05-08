@@ -8,10 +8,6 @@ namespace PizzaBox.Domain.Abstracts
   /// <summary>
   /// 
   /// </summary>
-  [XmlInclude(typeof(Crust))]
-  [XmlInclude(typeof(Size))]
-  [XmlInclude(typeof(Topping))]
-
   public class AComponent : Entity
   {
     public string Name { get; set; }

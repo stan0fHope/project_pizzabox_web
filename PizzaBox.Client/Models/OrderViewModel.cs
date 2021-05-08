@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using PizzaBox.Domain.Models;
 using PizzaBox.Storage;
 using PizzaBox.Storage.Repos;
@@ -37,14 +38,9 @@ namespace PizzaBox.Client.Models
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
-      var validResults = new List<ValidationResult>();
+      // var validResults = new List<ValidationResult>();
       if (SelectedCrust == SelectedSize)
       {
-        validResults.Add(new ValidationResult("IS you crasy!", new string[] { "SelectedCrust", "SelectedSize" }));
-        // Asking the properties if they invalid/erros
-        // like a catch 
-
-        // or return instance of collection if 1+ causes(If statement)
         yield return new ValidationResult("IS you crasy!", new string[] { "SelectedCrust", "SelectedSize" });
         // call an uber, yield brings records at end
       }
@@ -54,8 +50,6 @@ namespace PizzaBox.Client.Models
         yield return new ValidationResult("IS you crasy!", new[] { "SelectedToppings" });
       }
 
-      return validResults;
     }
-
   }
 }
