@@ -6,5 +6,12 @@ namespace PizzaBox.Domain.Models
   {
     public List<Pizza> Pizzas { get; set; }
     // not ICollection<> because: 
+    public decimal TotalPrice
+    {
+      get
+      {
+        return (Pizzas.Sum(p => p.TotalPrice));
+      }
+    }
   }
 }

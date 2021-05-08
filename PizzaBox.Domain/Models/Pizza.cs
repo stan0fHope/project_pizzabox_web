@@ -12,5 +12,12 @@ namespace PizzaBox.Domain.Models
     public Order Order { get; set; }
     public long OrderEntityId { get; set; }
     public List<Topping> Toppings { get; set; }
+    public decimal TotalPrice
+    {
+      get
+      {
+        return (Crust.Price + Size.Price + Toppings.Sum(t => t.Price));
+      }
+    }
   }
 }
