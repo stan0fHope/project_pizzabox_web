@@ -4,6 +4,7 @@ namespace PizzaBox.Domain.Models
 {
   public class Order : Entity
   {
-    public List<APizza> Pizzas;
+    public List<Pizza> Pizzas { get; set; }
+    // not ICollection<> because: 
   }
 }
