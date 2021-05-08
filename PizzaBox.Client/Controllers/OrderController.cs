@@ -5,6 +5,7 @@ using PizzaBox.Client.Models;
 using PizzaBox.Domain.Abstracts;
 using PizzaBox.Domain.Models;
 using PizzaBox.Storage;
+using PizzaBox.Storage.Repos;
 
 namespace PizzaBox.Client.Controllers
 {
@@ -21,13 +22,13 @@ namespace PizzaBox.Client.Controllers
     {
       if (ModelState.IsValid)
       {
-        var crust = _unitOfWork.Crusts.Select(c => c.Name == order.SelectedCrust).First();
-        var size = _unitOfWork.Sizes.Select(s => s.Name == order.SelectedSize).First();
+        var crust = _unitOfWork.Crusts.Select(c => c.Name == order.SelectedCrust.Name).First();
+        var size = _unitOfWork.Sizes.Select(s => s.Name == order.SelectedSize.Name).First();
         var toppings = new List<Topping>();
 
         foreach (var item in order.SelectedToppings)
         {
-          toppings.Add(_unitOfWork.Toppings.Select(t => t.Name == item).First());
+          toppings.Add(_unitOfWork.Toppings.Select(t => t.Name == item.Name).First());
         }
 
         var newPizza = new APizza { Crust = crust, Size = size, Toppings = toppings };

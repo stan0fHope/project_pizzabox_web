@@ -1,6 +1,6 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using PizzaBox.Domain.Interfaces;
 using PizzaBox.Domain.Models;
 
@@ -33,7 +33,6 @@ namespace PizzaBox.Storage.Repos
     public bool Delete()
     {
       throw new System.NotImplementedException();
-
     }
 
   }
