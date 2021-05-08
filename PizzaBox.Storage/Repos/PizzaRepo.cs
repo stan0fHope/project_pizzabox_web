@@ -8,23 +8,23 @@ using PizzaBox.Domain.Models;
 
 namespace PizzaBox.Storage.Repos
 {
-  public class PizzaRepo : IRepo<APizza>
+  public class PizzaRepo : IRepo<Pizza>
   {
     private readonly PizzaBoxContext _context;
     public PizzaRepo(PizzaBoxContext context)
     {
       _context = context;
     }
-    public IEnumerable<APizza> Select(Func<APizza, bool> filter)
+    public IEnumerable<Pizza> Select(Func<Pizza, bool> filter)
     {
       return _context.Pizzas.Where(filter);
     }
-    public bool Insert(APizza entry)
+    public bool Insert(Pizza entry)
     {
       throw new System.NotImplementedException();
     }
 
-    public APizza Update()
+    public Pizza Update()
     {
       throw new System.NotImplementedException();
     }
