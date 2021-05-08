@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using PizzaBox.Domain.Abstracts;
 namespace PizzaBox.Domain.Models
 {
@@ -6,11 +7,11 @@ namespace PizzaBox.Domain.Models
   {
     public List<Pizza> Pizzas { get; set; }
     // not ICollection<> because: 
-    public decimal TotalPrice
+    public decimal TotalCost
     {
       get
       {
-        return (Pizzas.Sum(p => p.TotalPrice));
+        return Pizzas.Sum(t => t.TotalPrice);
       }
     }
   }
