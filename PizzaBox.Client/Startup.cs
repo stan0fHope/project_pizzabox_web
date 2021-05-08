@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,10 +30,13 @@ namespace PizzaBox.Client
       // scoped(instance per session), each get so wait on yourselves. same instance for your visit
       // singleton(instance per application) best on readonly, else cause traffic
       // transient(instance per request), Overkill esp if 100 ppl w/ 10 request each
-      services.AddDbContext<PizzaBoxContext>(ParallelOptions =>
+      services.AddDbContext<PizzaBoxContext>(options =>
       {
         // options.UseNpgsql(_configuration[""]);
-        options.UseNpgsql(Configuration.GetConnectionString("pgsql"));
+        options.UseNpgsql(Configuration.GetConnectionString("pgsql"), opts =>
+        {
+          opts.EnableRetryOnFailure(3);
+        });
       });
     }
 
