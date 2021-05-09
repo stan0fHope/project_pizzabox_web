@@ -55,6 +55,5 @@ namespace PizzaBox.Client
         endpoints.MapControllers();
       });
     }
-
   }
 }

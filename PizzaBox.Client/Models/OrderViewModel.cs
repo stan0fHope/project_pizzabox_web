@@ -11,7 +11,6 @@ namespace PizzaBox.Client.Models
   public class OrderViewModel : IValidatableObject
   {
     // Display options
-    // strings are placeholder for test-running
     public List<Crust> Crusts { get; set; } // fillout with repos
     public List<Size> Sizes { get; set; }
     public List<Topping> Toppings { get; set; }
@@ -37,18 +36,11 @@ namespace PizzaBox.Client.Models
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
-      // var validResults = new List<ValidationResult>();
-      // if (SelectedCrust == SelectedSize)
-      // {
-      //   yield return new ValidationResult("IS you crasy!", new string[] { "SelectedCrust", "SelectedSize" });
-      //   // call an uber, yield brings records at end
-      // }
-
       if (SelectedToppings.Count < 2 || SelectedToppings.Count > 5)
       {
         yield return new ValidationResult("IS you crasy!", new[] { "SelectedToppings" });
       }
-
     }
+
   }
 }
