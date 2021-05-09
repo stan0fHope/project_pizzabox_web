@@ -1,2 +1,16 @@
 <h2>THanks for ordering</h2>
-<a asp-controller="home" href="/home">Home</a>
+<a href="/home">Home</a>
+
+@foreach (var item in ViewBag.Order.Pizzas)
+{
+  <p>Crust: @item.Crust</p>
+  <p>Size: @item.Size</p>
+  <p>Toppings:</p>
+
+  <ul>
+  @foreach (var thing in item.Toppings)
+    {
+      <li>@thing</li>
+    }
+  </ul>
+}

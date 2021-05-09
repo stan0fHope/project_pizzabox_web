@@ -8,8 +8,9 @@
 *@
 
 @* HTML Way *@
-<form action="/order">
+<form action="/order" method="POST">
   @Html.AntiForgeryToken()
+
   <fieldset>
     <legend>Crusts</legend>
     @Html.ValidationMessageFor(m => m.SelectedCrust)
@@ -19,8 +20,6 @@
         <label class="form-check-label" for="@item">@item></label>
         <input class="form-check-input" type="radio" id="@item" name="selectedcrust" value="@item"
         asp-for="SelectedCrust">
-
-        @Html.ValidationMessageFor(m => m.SelectedCrust)
       </div>
     }
   </fieldset>
@@ -30,8 +29,10 @@
     @Html.ValidationMessageFor(m => m.SelectedSize)
     @foreach (var item in Models.Sizes)
     {
-      <label for="@item">@item></label>
-      <input type="radio" id="@item" name="selectedsize" value="@item" asp-for="SelectedSize">
+      <div class="form-check">
+        <label class="form-check-label" for="@item">@item></label>
+        <input class="form-check-input" type="radio" id="@item" name="selectedsize" value="@item" asp-for="SelectedSize">
+      </div>
     }
   </fieldset>
 
@@ -40,11 +41,13 @@
     @Html.ValidationMessageFor(m => m.SelectedToppings)
     @foreach (var item in Models.Toppings)
     {
-      <label for="@item">@item></label>
-      <input type="checkbox" id="@item" name="selectedtoppings" value="@item">
+      <div class="form-check">
+        <label class="form-check-label" for="@item">@item></label>
+        <input class="form-check-input" type="radio" id="@item" name="selectedtopping" value="@item"
+        asp-for="SelectedSize">
+      </div>
     }
   </field>
-
 
   <button type="submit" action="">Make Pizza</button>
 </form>
