@@ -27,7 +27,7 @@ namespace PizzaBox.Client.Controllers
       // have the controller handle the controller
       // we dont manage/set pricing for uber, we just call it 
       // if we dont instantite homecontroler, we shouldnt for unitofwork 
-      return View("index", some);
+      return View("order", some);
     }
   }
 }

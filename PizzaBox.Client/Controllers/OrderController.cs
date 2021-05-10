@@ -9,7 +9,7 @@ using PizzaBox.Storage.Repos;
 
 namespace PizzaBox.Client.Controllers
 {
-  [Route("[controller")]
+  [Route("[controller]")]
   public class OrderController : Controller
   {
     private readonly UnitOfWork _unitOfWork;
@@ -41,6 +41,8 @@ namespace PizzaBox.Client.Controllers
 
         return View("checkout"); //if valid, go to this page
       }
+      order.Load(_unitOfWork);
+
       return View("index", order);
     }
 
@@ -48,7 +50,6 @@ namespace PizzaBox.Client.Controllers
     {
       _unitOfWork = unitOfWork;
     }
-
 
   }
 }
