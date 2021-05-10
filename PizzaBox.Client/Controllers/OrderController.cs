@@ -43,7 +43,7 @@ namespace PizzaBox.Client.Controllers
       }
       order.Load(_unitOfWork);
 
-      return View("index", order);
+      return View("order", order);
     }
 
     public OrderController(UnitOfWork unitOfWork)

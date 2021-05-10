@@ -6,7 +6,10 @@ namespace PizzaBox.Domain.Models
   public class Order : Entity
   {
     public List<Pizza> Pizzas { get; set; }
-    // not ICollection<> because: 
+    public Customer Customer { get; set; }
+    public long CustomerEntityID { get; set; }
+    public Store Store { get; set; }
+    public long StoreEntityID { get; set; }
     public decimal TotalCost
     {
       get
@@ -14,5 +17,7 @@ namespace PizzaBox.Domain.Models
         return Pizzas.Sum(t => t.TotalPrice);
       }
     }
+
+
   }
 }

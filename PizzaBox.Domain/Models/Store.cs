@@ -5,7 +5,7 @@ namespace PizzaBox.Domain.Models
 {
   public class Store : Entity
   {
-    // public Order Order { get; set; }
-    // public long OrderEntityId { get; set; }
+    public List<Order> Orders { get; set; }
+    public string StoreName { get; set; }
   }
 }
