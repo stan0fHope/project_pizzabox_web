@@ -8,6 +8,19 @@
   @Html.AntiForgeryToken()
 
   <fieldset>
+    <legend>Stores</legend>
+    @Html.ValidationMessageFor(m => m.SelectedCrust)
+    @foreach (var item in Model.Crusts)
+    {
+      <div class="form-check">
+        <label class="form-check-label" for="@item">@item</label>
+        <input class="form-check-input" type="radio" value="@item" asp-for="SelectedCrust">
+      </div>
+    }
+  </fieldset>
+
+
+  <fieldset>
     <legend>Crusts</legend>
     @Html.ValidationMessageFor(m => m.SelectedCrust)
     @foreach (var item in Model.Crusts)

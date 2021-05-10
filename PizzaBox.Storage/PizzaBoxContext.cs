@@ -14,7 +14,7 @@ namespace PizzaBox.Storage
 
     public DbSet<Pizza> Pizzas { get; set; }
     public DbSet<Store> Stores { get; set; }
-
+    public DbSet<Customer> Customers { get; set; }
     public DbSet<Order> Orders { get; set; }
 
     public PizzaBoxContext(DbContextOptions options) : base(options) { }
@@ -27,6 +27,7 @@ namespace PizzaBox.Storage
       builder.Entity<Pizza>().HasKey(e => e.EntityId);
       builder.Entity<Order>().HasKey(e => e.EntityId);
       builder.Entity<Store>().HasKey(e => e.EntityId);
+      builder.Entity<Customer>().HasKey(e => e.EntityId);
 
       OnModelSeeding(builder);
     }
@@ -53,6 +54,22 @@ namespace PizzaBox.Storage
         new Topping() { EntityId = 3, Name = "ham", Price = 1.50M },
         new Topping() { EntityId = 4, Name = "green peppers", Price = 1.25M},
         new Topping() { EntityId = 5, Name = "black olives", Price = 1.75M}
+      });
+
+      builder.Entity<Store>().HasData(new[]
+      {
+        new Store() { EntityId = 1, Name = "NYCheesy"},
+        new Store() { EntityId = 2, Name = "Detriot City Slice"},
+        new Store() { EntityId = 3, Name = "Chicago Gettas"},
+        new Store() { EntityId = 4, Name = "Pizzaria Nuevo"}
+      });
+
+      builder.Entity<Customer>().HasData(new[]
+      {
+        new Customer() { EntityId = 1, FirstName = "Fabio", LastName = "Santigo"},
+        new Customer() { EntityId = 2, FirstName = "Shantel", LastName = "Okinawa"},
+        new Customer() { EntityId = 3, FirstName = "Marshall", LastName = "Brickbend"},
+        new Customer() { EntityId = 4, FirstName = "Bobby", LastName = "Holland"}
       });
     }
   }

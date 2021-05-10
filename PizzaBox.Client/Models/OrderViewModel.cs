@@ -15,23 +15,30 @@ namespace PizzaBox.Client.Models
     public List<Size> Sizes { get; set; }
     public List<Topping> Toppings { get; set; }
 
+    public List<Store> Stores { get; set; }
+
     // Selected option
     [Required(ErrorMessage = "ra ra ra")]
     [DataType(DataType.Text)]
     public string SelectedCrust { get; set; }
 
-    [Required(ErrorMessage = "ri ri ri")]
+    [Required(ErrorMessage = "re re re")]
     [DataType(DataType.Text)]
     public string SelectedSize { get; set; }
 
-    [Required(ErrorMessage = "ru ru ru")]
+    [Required(ErrorMessage = "ri ri ri")]
     public List<string> SelectedToppings { get; set; }
+
+
+    [Required(ErrorMessage = "ru ru ru")]
+    public List<string> SelectedStore { get; set; }
 
     public void Load(UnitOfWork unitOfWork)
     {
       Crusts = unitOfWork.Crusts.Select(c => !string.IsNullOrWhiteSpace(c.Name)).ToList();
       Sizes = unitOfWork.Sizes.Select(s => !string.IsNullOrWhiteSpace(s.Name)).ToList();
       Toppings = unitOfWork.Toppings.Select(t => !string.IsNullOrWhiteSpace(t.Name)).ToList();
+      Store = unitOfWork.Stores.Select(t => !string.IsNullOrWhiteSpace(t.Name)).ToList();
     }
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

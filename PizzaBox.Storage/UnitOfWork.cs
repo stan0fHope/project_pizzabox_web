@@ -8,8 +8,10 @@ namespace PizzaBox.Storage
     public CrustRepo Crusts { get; } //gets only, so only be used 
     public SizeRepo Sizes { get; }
     public ToppingRepo Toppings { get; }
+
     public PizzaRepo Pizzas { get; set; }
     public StoreRepo Stores { get; set; }
+    public CustomerRepo Customers { get; set; }
     public OrderRepo Orders { get; set; }
 
 
@@ -22,6 +24,7 @@ namespace PizzaBox.Storage
       Toppings = new ToppingRepo(_context);
       Pizzas = new PizzaRepo(_context);
       Stores = new StoreRepo(_context);
+      Customers = new CustomerRepo(_context);
       Orders = new OrderRepo(_context);
     }
 
