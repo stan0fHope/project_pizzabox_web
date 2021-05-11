@@ -31,14 +31,22 @@ namespace PizzaBox.Client.Models
 
 
     [Required(ErrorMessage = "ru ru ru")]
-    public List<string> SelectedStore { get; set; }
+    public string SelectedStore { get; set; }
+
+
+    [Required(ErrorMessage = "ry ry ry")]
+    public string CustomerFirst { get; set; }
+
+    [Required(ErrorMessage = "ry ry ry")]
+    public string CustomerLast { get; set; }
+
 
     public void Load(UnitOfWork unitOfWork)
     {
       Crusts = unitOfWork.Crusts.Select(c => !string.IsNullOrWhiteSpace(c.Name)).ToList();
       Sizes = unitOfWork.Sizes.Select(s => !string.IsNullOrWhiteSpace(s.Name)).ToList();
       Toppings = unitOfWork.Toppings.Select(t => !string.IsNullOrWhiteSpace(t.Name)).ToList();
-      Store = unitOfWork.Stores.Select(t => !string.IsNullOrWhiteSpace(t.Name)).ToList();
+      Stores = unitOfWork.Stores.Select(st => !string.IsNullOrWhiteSpace(st.Name)).ToList();
     }
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

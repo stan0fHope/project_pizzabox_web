@@ -8,13 +8,26 @@
   @Html.AntiForgeryToken()
 
   <fieldset>
+    <legend>Please input your first name: </legend>
+    @Html.ValidationMessageFor(m => m.CustomerFirst)
+    <label class="form-check-label" for="">First name: </label>
+    <input class="form-check-input" type="text" asp-for="CustomerFirst">
+
+    <legend>Please input your last name: </legend>
+    @Html.ValidationMessageFor(m => m.CustomerLast)
+    <label class="form-check-label" for="">Last Name</label>
+    <input class="form-check-input" type="text" asp-for="CustomerLast">
+
+  </fieldset>
+
+  <fieldset>
     <legend>Stores</legend>
-    @Html.ValidationMessageFor(m => m.SelectedCrust)
-    @foreach (var item in Model.Crusts)
+    @Html.ValidationMessageFor(m => m.SelectedStore)
+    @foreach (var item in Model.Stores)
     {
       <div class="form-check">
         <label class="form-check-label" for="@item">@item</label>
-        <input class="form-check-input" type="radio" value="@item" asp-for="SelectedCrust">
+        <input class="form-check-input" type="radio" value="@item" asp-for="SelectedStore">
       </div>
     }
   </fieldset>

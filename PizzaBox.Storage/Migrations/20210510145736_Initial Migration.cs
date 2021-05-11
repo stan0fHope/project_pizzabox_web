@@ -2,7 +2,7 @@
 
 namespace PizzaBox.Storage.Migrations
 {
-    public partial class Changesinordercshtml : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
