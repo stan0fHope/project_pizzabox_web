@@ -45,7 +45,7 @@ namespace PizzaBox.Testing.Tests
 
     [Theory]
     [MemberData(nameof(sizes))]
-    public void TestSizes(Size size)
+    public void TestSize(Size size)
     {
       Assert.NotNull(size);
       Assert.Equal(size.Name, size.ToString());
@@ -70,7 +70,7 @@ namespace PizzaBox.Testing.Tests
       Assert.NotNull(p);
       Assert.NotNull(p.TotalPrice);
 
-      Assert.GreaterOrEqual(p.TotalPrice, 8.00MM);
+      Assert.GreaterOrEqual(p.TotalPrice, 8.00M);
     }
 
 
