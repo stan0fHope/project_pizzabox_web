@@ -69,4 +69,4 @@ jobs:
 
 
 name: ci-pipeline
-trigger: push
+on: push
