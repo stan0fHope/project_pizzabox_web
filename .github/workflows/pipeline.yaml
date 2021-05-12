@@ -53,18 +53,18 @@ jobs:
       - run: docker push stan0fhope/pizzabox_web
       - run: docker logout 
  
-  # deploy:
-  #   needs:
-  #     - package
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: azure/login@v1
-  #       with:
-  #         creds: ${{ secrets.AZURE_CREDENTIALS }}
-  #     - uses: azure/webapps-deploy@v2
-  #       with:
-  #         app-name: pizzaboxdemo
-  #         images: stan0fhope/pizzabox_web
+  deploy:
+    needs:
+      - package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - uses: azure/webapps-deploy@v2
+        with:
+          app-name: pizzaboxdemo
+          images: stan0fhope/pizzabox_web
     
 
 
