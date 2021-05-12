@@ -18,6 +18,5 @@ namespace PizzaBox.Testing.Tests
       Assert.NotNull(sut);
     }
 
-
   }
 }

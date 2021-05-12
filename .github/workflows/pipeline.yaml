@@ -41,7 +41,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: docker image build -f Dockerfile -t pizzabox_web .
-      - run: docker image tag pizzabox_web raiga120/pizzabox_web
+      - run: docker image tag pizzabox_web stan0fhope/pizzabox_web
       - run: echo $DOCKER_TOKEN | docker login -u $DOCKER_USER --password-stdin
       # now to push to docker 
       - run: docker push stan0fhope/pizzabox_web
