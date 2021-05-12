@@ -21,7 +21,7 @@ namespace PizzaBox.Testing.Tests
       new Size() { EntityId = 2, Name = "medium", Price = 10.00M},
       new Size() { EntityId = 3, Name = "large", Price = 14.00M}
     };
-    public staticList<Topping> toppings = new List<object[]>()
+    public static List<Topping> toppings = new List<object[]>()
     {
       new Topping() { EntityId = 1, Name = "pepperoni", Price = 1.50M},
       new Topping() { EntityId = 2, Name = "pineapple", Price = 2.50M},
