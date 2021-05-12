@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-16.04
     steps:
       - uses: actions/checkout@v2 #git checkout
-      - run dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=opencover -p:CoverletOutput=./test_coverage/ -l trx -r ./test_results
+      - run: dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=opencover -p:CoverletOutput=./test_coverage/ -l trx -r ./test_results
       # CollectCoverage is how we collect the report, OutputFormat genereates the report (reportgenerator)
 
     # analyze: sonarcloud = (static code anaylsis)    
