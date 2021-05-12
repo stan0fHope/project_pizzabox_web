@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: dotnet tool install -g dotnet-sonarscanner
-      - run: dotnet sonarscanner begin -k:'stan0fHope_project_pizzabox_web' -o:'project_pizzabox_web' -d:sonar.login=$SONAR_TOKEN -d:sonar.host.url='https://sonarcloud.io' #activate scanner
+      - run: dotnet sonarscanner begin -k:'stan0fHope_project_pizzabox_web' -o:'stan0fhope' -d:sonar.login=$SONAR_TOKEN -d:sonar.host.url='https://sonarcloud.io' #activate scanner
       - run: dotnet build
       # k (project key) is which project, o(organization) whihc project key belongs, login for access url is where is
       - run: dotnet sonarscanner end -d:sonar.login=$SONAR_TOKEN
