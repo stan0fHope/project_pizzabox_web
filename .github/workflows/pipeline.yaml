@@ -1,25 +1,19 @@
 jobs:
   build: 
     runs-on: ubuntu-latest 
-    # which machine/environ like Ubuntu or so
     steps:
-      # first pull in code to start
       - uses: actions/checkout@v2
-      # now with the code, we can build
       - run: dotnet build
 
   # test: xunit + coverlet
   test:
-    needs: #not fully needed unless trust issues
+    needs:
       - build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2 #git checkout
+      - uses: actions/checkout@v2 
       - run: dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=opencover -p:CoverletOutput=./test_coverage/ -l trx -r ./test_results
-      # CollectCoverage is how we collect the report, OutputFormat genereates the report (reportgenerator)
 
-    # analyze: sonarcloud = (static code anaylsis)    
-    # act after test
   analyze: 
     needs: 
       - build
