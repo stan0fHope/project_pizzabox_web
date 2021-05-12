@@ -1,0 +1,72 @@
+jobs:
+  build: 
+    runs-on: ubuntu-16.04 
+    # which machine/environ like Ubuntu or so
+    steps:
+      # first pull in code to start
+      - uses: actions/checkout@v2
+      # now with the code, we can build
+      - run: dotnet build
+
+  # test: xunit + coverlet
+  test:
+    needs: #not fully needed unless trust issues
+      - build
+    runs-on: ubuntu-16.04
+    steps:
+      - uses: actions/checkout@v2 #git checkout
+      - run dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=opencover -p:CoverletOutput=./test_coverage/ -l trx -r ./test_results
+      # CollectCoverage is how we collect the report, OutputFormat genereates the report (reportgenerator)
+
+    # analyze: sonarcloud = (static code anaylsis)    
+    # act after test
+  analyze: 
+    needs: 
+      - build
+      - test
+    env:
+      SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}      
+      GITHUB_TOEKN: ${{secrets.GITHUB_TOKEN}}
+    runs-on: ubuntu-16.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: dotnet tool install -g dotnet-sonarscanner
+      - run: dotnet sonarscanner begin -k:'stan0fHope_project_pizzabox_web' -o:'project_pizzabox_web' -d:sonar.login=$SONAR_TOKEN -d:sonar.host.url='https://sonarcloud.io' #activate scanner
+      - run: dotnet build
+      # k (project key) is which project, o(organization) whihc project key belongs, login for access url is where is
+      - run: dotnet sonarscanner end -d:sonar.login=$SONAR_TOKEN
+    
+  #package: docker image
+  package:
+    env:
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }} 
+      DOCKER_USER: ${{ secrets.DOCKER_USER }} 
+    needs:
+      - analyze
+    runs-on: ubuntu-16.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: docker image build -f Dockerfile -t pizzabox_web .
+      - run: docker image tag pizzabox_web stan0fhope/pizzabox_web
+      - run: echo $DOCKER_TOKEN | docker login -u $DOCKER_USER --password-stdin
+      # now to push to docker 
+      - run: docker push stan0fhope/pizzabox_web
+      - run: docker logout 
+
+  # deploy:
+  #   needs:
+  #     - package
+  #   runs-on: ubuntu-16.04
+  #   steps:
+  #     - uses: azure/login@v1
+  #       with:
+  #         creds: ${{ secrets.AZURE_CREDENTIALS }}
+  #     - uses: azure/webapps-deploy@v2
+  #       with:
+  #         app-name: pizzaboxdemo
+  #         images: stan0fhope/pizzabox_web
+    
+
+
+name: ci-pipeline
+trigger: push
