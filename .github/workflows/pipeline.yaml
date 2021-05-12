@@ -1,6 +1,6 @@
 jobs:
   build: 
-    runs-on: ubuntu-16.04 
+    runs-on: ubuntu-latest 
     # which machine/environ like Ubuntu or so
     steps:
       # first pull in code to start
@@ -12,7 +12,7 @@ jobs:
   test:
     needs: #not fully needed unless trust issues
       - build
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2 #git checkout
       - run: dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=opencover -p:CoverletOutput=./test_coverage/ -l trx -r ./test_results
@@ -27,7 +27,7 @@ jobs:
     env:
       SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}      
       GITHUB_TOEKN: ${{secrets.GITHUB_TOKEN}}
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: dotnet tool install -g dotnet-sonarscanner
@@ -43,7 +43,7 @@ jobs:
       DOCKER_USER: ${{ secrets.DOCKER_USER }} 
     needs:
       - analyze
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: docker image build -f Dockerfile -t pizzabox_web .
@@ -56,7 +56,7 @@ jobs:
   # deploy:
   #   needs:
   #     - package
-  #   runs-on: ubuntu-16.04
+  #   runs-on: ubuntu-latest
   #   steps:
   #     - uses: azure/login@v1
   #       with:
