@@ -26,7 +26,7 @@ jobs:
       - test
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}      
-      GITHUB_TOEKN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
